@@ -83,29 +83,37 @@ var multi =
         var contents = 'This is not a valid reedem script';
         var script = $(form).find('textarea[name="script"]').val();
         var chain = $(form).find('select[name="chain"]').val();
-        try
+        if(!script)
         {
-            var keys = $.fn.blockstrap.multisig.decode(script, chain);
-            if($.isArray(keys))
-            {
-                title = 'Script Decoded';
-                contents = '<p>The reedem script uses the following public keys:</p>';
-                $.each(keys, function(k, key)
-                {
-                    contents+= '<hr>';
-                    contents+= '<p><strong>Address:</strong> '+key.address+'</p>';
-                    contents+= '<p><strong>Public Key (Hex):</strong> '+key.key+'</p>';
-                });
-                bs.core.modal(title, contents);
-            }
-            else
-            {
-                bs.core.modal(title, contents);
-            }
-        }
-        catch(error)
-        {
+            contents = '<p>No reedem script provided</p>';
             bs.core.modal(title, contents);
+        }
+        else
+        {
+            try
+            {
+                var keys = $.fn.blockstrap.multisig.decode(script, chain);
+                if($.isArray(keys))
+                {
+                    title = 'Script Decoded';
+                    contents = '<p>The reedem script uses the following public keys:</p>';
+                    $.each(keys, function(k, key)
+                    {
+                        contents+= '<hr>';
+                        contents+= '<p><strong>Address:</strong> '+key.address+'</p>';
+                        contents+= '<p><strong>Public Key (Hex):</strong> '+key.key+'</p>';
+                    });
+                    bs.core.modal(title, contents);
+                }
+                else
+                {
+                    bs.core.modal(title, contents);
+                }
+            }
+            catch(error)
+            {
+                bs.core.modal(title, contents);
+            }
         }
     },
     forms: function()
