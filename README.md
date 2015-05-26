@@ -11,4 +11,4 @@ It utilizes the [framework](http://github.com/blockstrap/framework) and allows f
 
 -----
 
-For more information, please visit [docs.blockstrap.com](http://docs.blockstrap.com/en/boilerplates/php/).
+For more information, please visit [docs.blockstrap.com](http://docs.blockstrap.com/en/framework/modules/multisig/).
