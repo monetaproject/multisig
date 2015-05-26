@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<title>{{title}}</title>
+<link rel='shortcut icon' href='favicon.ico'>
+{{#css}}
+    <link href="{{href}}" rel="stylesheet">
+{{/css}}    
+{{#meta}}
+    <meta name="{{name}}" content="{{content}}" property="{{property}}" />
+{{/meta}}
+</head>
+    
+<body id="config-id-{{config.app.id}}" data-salt="{{config.salts.test}}">
+    
+<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                <span class="sr-only">{{copy.toggle}}</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="{{urls.root}}" class="navbar-brand"></a>
+        </div>
+        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                {{#nav}}
+                    <li class="menu-item {{css}}">
+                        <a href="{{url}}">{{title}}</a>
+                    </li>
+                {{/nav}}
+                <li class="twitter mini-icon">
+                    <a target="_blank" href="{{urls.twitter}}">
+                        {{copy.twitter}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    
+<div class="page" id="intro">
+    <div class="container">
+        <h1>{{copy.intro.h1}}</h1>
+        <h2>{{copy.intro.h2}}</h2>
+    </div>
+</div>

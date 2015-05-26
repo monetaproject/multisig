@@ -1,0 +1,30 @@
+/*
+
+RESETS
+
+*/
+textarea {
+    min-height: 75px;
+}
+
+/*
+
+FORMS
+
+*/
+form.bs-multi {
+    text-align: left;
+}
+form.bs-multi .col-sm-4.middle {
+    text-align: center;
+}
+form.bs-multi input.form-control, 
+form.bs-multi select.form-control {
+    margin: 5px 0;
+}
+form.bs-multi p.label-wrapper {
+    padding-top: 8px;
+}
+form.bs-multi p.label-wrapper.naked {
+    padding-top: 14px;
+}

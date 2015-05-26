@@ -1,0 +1,165 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <span class="alert alert-warning alert-block">CREATE NEW P2SH ADDRESS</span>
+            <form class="bs-multi" id="bs-create-multisig-address">
+                
+                <p>How many public keys should be used and required to generate and in-turn spend coins from the address?</p>
+                <hr>
+                
+                <div class="row">
+                    <div class="col-sm-4">
+                        <select class="form-control" name="required" autocomplete="off">
+                            <option value="1">1</option>
+                            <option value="2" selected="selected">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4 middle">
+                        <p class="label-wrapper">
+                            <span class="label label-primary">OUT OF</span>
+                        </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="used" autocomplete="off" data-id="bs-create-keys">
+                            <option value="2">2</option>
+                            <option value="3" selected="selected">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="label-wrapper naked">Blockchain / Currency</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <select class="form-control" name="chain" autocomplete="off">
+                            <option value="btc">Bitcoin</option>
+                            <option value="dash">DashPay</option>
+                            <option value="doge">Dogecoin</option>
+                            <option value="ltc">Litecoin</option>
+                            <option value="btct">BTC Test</option>
+                            <option value="dasht">DASH Test</option>
+                            <option value="doget">DOGE Test</option>
+                            <option value="ltct">LTC Test</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <hr>
+                <p>Use existing public keys to generate the address:</p>
+                <div id="bs-create-keys" class="bs-key-list">
+                    <input type="text" class="form-control" name="keys[0]" placeholder="Add the 1st public key here" autocomplete="off" />
+                    <input type="text" class="form-control" name="keys[1]" placeholder="Add the 2nd public key here" autocomplete="off" />
+                    <input type="text" class="form-control" name="keys[3]" placeholder="Add the 3rd public key here" autocomplete="off" />
+                </div>
+                
+                <br>
+                <button type="submit" class="btn btn-primary">Generate Address</button>
+                <hr>
+                
+                <p class="small"><strong>Or ( but not recommended )</strong><br />You can generate new keys from a single salted seed:</p>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <p class="label-wrapper naked">Salt:</p>
+                    </div>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="salt" autocomplete="off" placeholder="You must salt your seed" />
+                    </div>
+                    <div class="col-sm-2">
+                        <p class="label-wrapper naked">Seed:</p>
+                    </div>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="seed" autocomplete="off" placeholder="Provide a seed / phrase to generate from" />
+                    </div>
+                </div>
+                
+                <br>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;</div>
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-danger">Generate Keys &amp; Address</button>
+                    </div>
+                </div>
+                <hr>
+                
+            </form>
+        </div>
+        <div class="col-md-4">
+            <span class="alert alert-warning alert-block">DECODE REEDEM SCRIPT</span>
+            <form class="bs-multi" id="bs-decode-multisig-script">
+                
+                <p>Do you have a reedem script that needs decoding?</p>
+                <hr>
+                
+                <textarea class="form-control" name="script" placeholder="Copy a reedem script here for decoding" autocomplete="off"></textarea>
+                <select class="form-control" name="chain" autocomplete="off">
+                    <option value="btc">Bitcoin</option>
+                    <option value="dash">DashPay</option>
+                    <option value="doge">Dogecoin</option>
+                    <option value="ltc">Litecoin</option>
+                    <option value="btct">BTC Test</option>
+                    <option value="dasht">DASH Test</option>
+                    <option value="doget">DOGE Test</option>
+                    <option value="ltct">LTC Test</option>
+                </select>
+                
+                <br>
+                <button type="submit" class="btn btn-primary">Decode</button>
+                
+            </form>
+            
+            <hr>
+            
+            <span class="alert alert-warning alert-block">VERIFY ADDRESSES IN REEDEM SCRIPT</span>
+            <form class="bs-multi" id="bs-verify-multisig-script">
+                
+                <p>Do you have a reedem script that needs verifying?</p>
+                <hr>
+                
+                <textarea class="form-control" name="script" placeholder="Copy the relevant reedem script here for verifying" autocomplete="off"></textarea>
+                <select class="form-control" name="chain" autocomplete="off">
+                    <option value="btc">Bitcoin</option>
+                    <option value="dash">DashPay</option>
+                    <option value="doge">Dogecoin</option>
+                    <option value="ltc">Litecoin</option>
+                    <option value="btct">BTC Test</option>
+                    <option value="dasht">DASH Test</option>
+                    <option value="doget">DOGE Test</option>
+                    <option value="ltct">LTC Test</option>
+                </select>
+                
+                <div id="bs-verify-keys" class="bs-key-list">
+                    <input type="text" class="form-control" autocomplete="off" name="keys[0]" placeholder="Check this key or address is included" />
+                </div>
+                
+                <br>
+                <button class="btn btn-danger" data-id="bs-verify-keys">Add Another</button>
+                <button type="submit" class="btn btn-primary">Decode</button>
+                
+            </form>
+        </div>
+        <div class="col-md-4">
+            <span class="alert alert-warning alert-block">{{forms.send.header}}</span>
+        </div>
+    </div>    
+</div>

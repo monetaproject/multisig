@@ -1,0 +1,121 @@
+<hr>
+<div id="footer">
+    <div class="container">
+        <div class="row desktop">
+            <div class="col-sm-3 left">
+                <h6>{{copy.footer.left}}</h6>
+                <div class="menu-resources-container">
+                    <ul class="menu">
+                        {{#footer.left}}
+                            <li class="menu-item {{css}}">
+                                <a href="{{url}}">{{title}}</a>
+                            </li>    
+                        {{/footer.left}}
+                    </ul>
+                </div>
+            </div>            
+            <div class="col-sm-6 middle">    
+                <div id="media">
+                    <div class="row">
+                        {{#media}}
+                            <a href="{{url}}" class="site col-sm-3 {{css}}">
+                                <img class="img img-responsive" src="{{img}}">
+                            </a>
+                        {{/media}}
+                    </div>
+                </div>
+                <h6>{{copy.footer.middle}}</h6>
+                <div class="social-links">
+                    <a href="{{urls.twitter}}" class="twitter"></a>
+                    <a href="{{urls.github}}" class="github"></a>
+                    <a href="{{urls.reddit}}" class="reddit"></a>
+                    <a href="{{urls.instagram}}" class="instagram"></a>
+                    <a href="{{urls.rss}}" class="rss"></a>
+                </div>
+                <form class="signup form-horizontal" method="post" action="{{forms.signup.action}}">
+                    <div class="form-group">
+                        <div class="col-xs-9">
+                            <input type="email" class="form-control" id="email" name="EMAIL" placeholder="{{forms.signup.placeholder}}">
+                        </div>
+                        <button type="submit" class="col-xs-3 btn btn-danger">{{forms.signup.submit}}</button>
+                    </div>
+                </form>
+                {{{copy.footer.credits}}
+            </div>
+            <div class="col-sm-3 right">
+                <h6>{{copy.footer.right}}</h6>
+                <div class="menu-communities-container">
+                    <ul class="menu">
+                        {{#footer.right}}
+                            <li class="menu-item {{css}}">
+                                <a href="{{url}}">{{title}}</a>
+                            </li>
+                        {{/footer.right}}
+                    </ul>
+                </div>
+            </div>        
+        </div>
+        <div class="row mobile">
+            <div class="col-sm-12 middle">
+                <div class="col-sm-12 middle">
+                    <h6>{{copy.footer.left}}</h6>
+                    <div class="menu-resources-container">
+                        <ul class="menu">
+                            {{#footer.left}}
+                                <li class="menu-item {{css}}">
+                                    <a href="{{url}}">{{title}}</a>
+                                </li>
+                            {{/footer.left}}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-12 middle">
+                    <h6>{{copy.footer.right}}</h6>
+                    <div class="menu-communities-container">
+                        <ul class="menu">
+                            {{#footer.right}}
+                                <li class="menu-item {{css}}">
+                                    <a href="{{url}}">{{title}}</a>
+                                </li>
+                            {{/footer.right}}
+                        </ul>
+                    </div>
+                </div>                
+                {{{copy.footer.credits}}}
+            </div>
+        </div>
+    </div>
+</div>
+
+{{#modals}}
+<div class="modal fade" id="{{id}}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">{{copy.close}}</span>
+                </button>
+                <h4 class="modal-title">{{title}}</h4>
+            </div>
+            <div class="modal-body no-footer">{{content}}</div>
+        </div>
+    </div>
+</div>
+{{/modals}}
+    
+{{#js}}
+    <script src="{{src}}"></script>
+{{/js}}
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create','{{analytics.google}}','auto');
+ga('send','pageview');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,266 @@
+{
+    "title": "Blockstrap Multi-Sig Demo",
+    "css": [
+        {
+            "href": "css/bootstrap.css"
+        },
+        {
+            "href": "css/bs.css"
+        },
+                {
+            "href": "css/app.css"
+        }
+    ],
+    "js": [
+        {
+            "src": "js/jquery.min.js"
+        },
+        {
+            "src": "js/bootstrap.min.js"
+        },
+        {
+            "src": "js/blockstrap/crypto.js"
+        },
+        {
+            "src": "js/blockstrap/sha3.js"
+        },
+        {
+            "src": "js/bitcoinjs-lib.js"
+        },
+        {
+            "src": "js/bs.options.js"
+        },
+        {
+            "src": "js/blockstrap.js"
+        },
+        {
+            "src": "js/blockstrap/api.js"
+        },
+        {
+            "src": "js/blockstrap/blockchains.js"
+        },
+        {
+            "src": "js/blockstrap/multisig.js"
+        },
+        {
+            "src": "js/app.js"
+        }
+    ],
+    "urls": {
+        "root": "#",
+        "twitter": "http://twitter.com/blockstrap",
+        "github": "https://github.com/blockstrap",
+        "reddit": "http://reddit.com/u/blockstrap",
+        "instagram": "http://instagram.com/blockstrap/",
+        "rss": "http://blockstrap.com/feed/"
+    },
+    "copy": {
+        "close": "Close",
+        "credits": "This Example Application is Powered by <a href='http://blockstrap.com'>Blockstrap</a> | View <a href='https://github.com/blockstrap/multi'>Source Code</a>",
+        "footer": {
+            "left": "our network",
+            "middle": "we're social",
+            "right": "useful links",
+            "credits": "<p class='credits'>&copy; 2015 | All Rights Reserved | Made by <a href='http://neuroware.io'>Neuroware.io</a> | Please read our <a href='http://blockstrap.com/en/beta/'>Beta Disclaimer</a></p>"
+        },
+        "intro": {
+            "h1": "blockstrap multi-sig demo",
+            "h2": "a playground for all things distributed"
+        },
+        "toggle": "toggle",
+        "twitter": "Follow us on Twitter"
+    },
+    "analytics": {
+        "google": "UA-55832346-1"
+    },
+    "meta": [
+        {
+            "name": "description",
+            "content": "Blockstrap is an open source HTML5 framework and powerful API for building blockchain applcations.",
+            "property": ""
+        },
+        {
+            "name": "",
+            "content": "http://blockstrap.com",
+            "property": "og:url"
+        },
+        {
+            "name": "",
+            "content": "Blockstrap",
+            "property": "og:title"
+        },
+        {
+            "name": "",
+            "content": "img/meta.png",
+            "property": "og:image"
+        },
+        {
+            "name": "",
+            "content": "Blockstrap is an open source HTML5 framework and powerful API for building blockchain applcations.",
+            "property": "og:description"
+        },
+        {
+            "name": "",
+            "content": "blockstrap.com",
+            "property": "og:site_name"
+        }
+    ],
+    "nav": [
+        {
+            "css": "",
+            "url": "http://blockstrap.com/en/framework/",
+            "title": "framework"
+        },
+        {
+            "css": "",
+            "url": "http://blockstrap.com/en/api/",
+            "title": "api"
+        },
+        {
+            "css": "current-menu-item",
+            "url": "#",
+            "title": "multisig"
+        },
+        {
+            "css": "",
+            "url": "http://blockstrap.com/en/downloads/",
+            "title": "downloads"
+        },
+        {
+            "css": "",
+            "url": "http://blockstrap.com/en/showcase/",
+            "title": "showcase"
+        },
+        {
+            "css": "",
+            "url": "http://docs.blockstrap.com",
+            "title": "docs"
+        },
+        {
+            "css": "",
+            "url": "http://blockchains.io",
+            "title": "explorer"
+        }
+    ],
+    "footer": {
+        "left": [
+            {
+                "title": "betanomics.asia",
+                "url": "http://betanomics.asia",
+                "css": ""
+            },
+            {
+                "title": "blockauth.org",
+                "url": "http://blockauth.org",
+                "css": ""
+            },
+            {
+                "title": "blockchains.io",
+                "url": "http://blockchains.io",
+                "css": ""
+            },
+            {
+                "title": "blockstrap",
+                "url": "http://blockstrap.com",
+                "css": ""
+            },
+            {
+                "title": "dnkey",
+                "url": "http://dnkey.org",
+                "css": ""
+            },
+            {
+                "title": "neuroware.io",
+                "url": "http://neuroware.io",
+                "css": ""
+            },
+            {
+                "title": "press kit",
+                "url": "https://github.com/blockstrap/press/archive/master.zip",
+                "css": ""
+            }
+        ],
+        "right": [
+            {
+                "title": "/r/bitcoin",
+                "url": "http://reddit.com/r/bitcoin",
+                "css": ""
+            },
+            {
+                "title": "bitcoin talk",
+                "url": "http://bitcointalk.org",
+                "css": ""
+            },
+            {
+                "title": "coindesk",
+                "url": "http://coindesk.com",
+                "css": ""
+            },
+            {
+                "title": "zapchain",
+                "url": "http://zapchain.com",
+                "css": ""
+            },
+            {
+                "title": "stack overflow",
+                "url": "http://stackoverflow.com",
+                "css": ""
+            },
+            {
+                "title": "bootstrap",
+                "url": "http://getbootstrap.com",
+                "css": ""
+            },
+            {
+                "title": "github",
+                "url": "http://github.com",
+                "css": ""
+            }
+        ]
+    },
+    "media": [
+        {
+            "url": "http://www.500.co/startup/neuroware/",
+            "img": "http://blockcontent.s3.amazonaws.com/content/uploads/sites/3/2015/04/14224036/RTE92C9.png",
+            "css": ""
+        },
+        {
+            "url": "http://www.coindesk.com/neuroware-launches-future-proof-api-cryptocurrency-apps/",
+            "img": "http://blockcontent.s3.amazonaws.com/content/uploads/sites/3/2015/04/14223800/CoinDesk.png",
+            "css": ""
+        },
+        {
+            "url": "http://e27.co/blockstrap-wants-to-be-for-bitcoin-what-wordpress-is-for-media-20141205/",
+            "img": "http://blockcontent.s3.amazonaws.com/content/uploads/sites/3/2015/04/14223648/e27.png",
+            "css": ""
+        },
+        {
+            "url": "http://cointelegraph.com/news/113024/blockstrap-api-plans-to-revolutionize-blockchain-development",
+            "img": "http://blockcontent.s3.amazonaws.com/content/uploads/sites/3/2015/04/14223459/CoinTelegraph.png",
+            "css": ""
+        }
+    ],
+    "forms": {
+        "signup": {
+            "action": "//neuroware.us8.list-manage.com/subscribe/post?u=510ca926990f2cef070cbe3d2&amp;id=1d8f6ca30f",
+            "placeholder": "sign up to the developer mailing list for updates...",
+            "submit": "Sign Up"
+        },
+        "create": {
+            "header": "CREATE NEW P2SH ADDRESS"
+        },
+        "verify": {
+            "header": "VERIFY P2SH ADDRESS"
+        },
+        "send": {
+            "header": "SEND FROM P2SH ADDRESS"
+        }
+    },
+    "modals": [
+        {
+            "id": "default-modal",
+            "title": "",
+            "content": ""
+        }
+    ]
+}
