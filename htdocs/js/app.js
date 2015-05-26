@@ -291,7 +291,7 @@ var multi =
                                     if(typeof results.txid != 'undefined' && results.txid)
                                     {
                                         title = 'Success';
-                                        contents = '<p>Transaction successfully sent to <a href="http://api.blockstrap.com/v0/'+chain+'/address/id/'+address+'" target="_blank">'+address+'</p>';
+                                        contents = '<p>Transaction successfully sent to <a href="http://api.blockstrap.com/v0/'+chain+'/address/id/'+address+'" target="_blank">'+address+'</a></p>';
                                         contents+= '<p>TXID: <a href="http://api.blockstrap.com/v0/'+chain+'/transaction/id/'+results.txid+'" target="_blank">'+results.txid+'</a></p>';
                                         bs.core.modal(title, contents);
                                     }
@@ -341,6 +341,7 @@ var multi =
         console.log('generated address = '+key.address);
         var deterministic_keys = keys;
         var address_to_send_tx_too = 'ncq5H5EdCwmGVtQtquk2TKyXDTNApoDpwq';
+        console.log('doget qt return address = '+address_to_send_tx_too);
     },
     verify: function(form)
     {
