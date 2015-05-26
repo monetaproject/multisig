@@ -159,7 +159,60 @@
             </form>
         </div>
         <div class="col-md-4">
-            <span class="alert alert-warning alert-block">{{forms.send.header}}</span>
+            <span class="alert alert-warning alert-block">SEND FROM P2SH ADDRESS</span>
+            <form class="bs-multi" id="bs-create-multisig-address">
+                
+                <p>You will need to provide the reedem script and correct number of private keys in order to send a transaction.</p>
+                <hr>
+                
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="label-wrapper naked">Number of Keys:</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <select class="form-control" name="required" autocomplete="off" data-id="bs-private-keys">
+                            <option value="1">1</option>
+                            <option value="2" selected="selected">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <select class="form-control" name="chain" autocomplete="off">
+                    <option value="btc">Bitcoin</option>
+                    <option value="dash">DashPay</option>
+                    <option value="doge">Dogecoin</option>
+                    <option value="ltc">Litecoin</option>
+                    <option value="btct">BTC Test</option>
+                    <option value="dasht">DASH Test</option>
+                    <option value="doget">DOGE Test</option>
+                    <option value="ltct">LTC Test</option>
+                </select>
+                <textarea class="form-control" name="script" autocomplete="off" placeholder="Enter the reedem script here..."></textarea>
+                <input type="text" name="address" class="form-control" autocomplete="off" placeholder="Address to send transaction to" />
+                <input type="text" name="amount" class="form-control" autocomplete="off" placeholder="Amount to send" />
+                
+                <hr>
+                <p>Enter the relevant private keys below to send transaction:</p>
+                <div id="bs-private-keys" class="bs-key-list">
+                    <input type="text" class="form-control" name="keys[0]" placeholder="Add the 1st private key here" autocomplete="off" />
+                    <input type="text" class="form-control" name="keys[1]" placeholder="Add the 2nd private key here" autocomplete="off" />
+                </div>
+                
+                <br>
+                <button type="submit" class="btn btn-primary">Send Payment</button>
+                
+            </form>
         </div>
     </div>    
 </div>

@@ -148,7 +148,7 @@ var multi =
             var used = parseInt($(this).val());
             var list = $('#'+$(this).attr('data-id'));
             var current = $(list).find('input').length;
-            if(used != list)
+            if(used != current)
             {
                 $(list).html('');
                 var contents = '';
@@ -159,6 +159,28 @@ var multi =
                     else if(key_count == 2) type = 'rd';
                     else if(key_count > 2) type = 'th';
                     contents+= '<input type="text" class="form-control" name="keys['+key_count+']" placeholder="Add the '+(key_count+1)+type+' public key here" autocomplete="off" />';
+                }
+                $(list).html(contents);
+            }
+        });
+        
+        // Required switch
+        $('body').on('change', 'select[name="required"]', function(e)
+        {
+            var required = parseInt($(this).val());
+            var list = $('#'+$(this).attr('data-id'));
+            var current = $(list).find('input').length;
+            if(required != current)
+            {
+                $(list).html('');
+                var contents = '';
+                for(key_count = 0; key_count < required; key_count++) 
+                {
+                    var type = 'st';
+                    if(key_count == 1) type = 'nd';
+                    else if(key_count == 2) type = 'rd';
+                    else if(key_count > 2) type = 'th';
+                    contents+= '<input type="text" class="form-control" name="keys['+key_count+']" placeholder="Add the '+(key_count+1)+type+' private key here" autocomplete="off" />';
                 }
                 $(list).html(contents);
             }
