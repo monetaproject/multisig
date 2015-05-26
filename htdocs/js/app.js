@@ -142,6 +142,15 @@ var multi =
             multi.verify(this, button);
         });
         
+        // Send transactions
+        $('body').on('submit', '#bs-send-multisig-transaction', function(e)
+        {
+            e.preventDefault();
+            var button = $(this).find('button[type="submit"]');
+            $(button).addClass('loading');
+            multi.send(this, button);
+        });
+        
         // Used switch
         $('body').on('change', 'select[name="used"]', function(e)
         {
@@ -199,7 +208,6 @@ var multi =
     },
     init: function()
     {
-        multi.test();
         multi.forms();
         multi.modals();
     },
@@ -210,6 +218,120 @@ var multi =
             $('.loading').removeClass('loading');
         });
     },
+    send: function(form)
+    {
+        var bs = $.fn.blockstrap;
+        var title = 'Error';
+        var contents = '<p>No reedem script provided</p>';
+        var chain = $(form).find('select[name="chain"]').val();
+        var script = $(form).find('textarea[name="script"]').val();
+        if(script)
+        {
+            var address = $(form).find('input[name="address"]').val();
+            var amount = parseFloat($(form).find('input[name="amount"]').val());
+            if(address && amount > 0)
+            {
+                var keys = [];
+                $(form).find('.bs-key-list input').each(function(i)
+                {
+                    var input = this;
+                    if($(input).val()) keys.push($(input).val());
+                });
+                try
+                {
+                    var redeem_script = bitcoin.Script.fromHex(script);
+                    var script_pub_key = bitcoin.scripts.scriptHashOutput(redeem_script.getHash());
+                    var lib = $.fn.blockstrap.settings.blockchains[chain].lib;
+                    var multisig_address = bitcoin.Address.fromOutputScript(script_pub_key, bitcoin.networks[lib]).toString();
+                    bs.api.unspents(multisig_address, chain, function(unspents)
+                    {
+                        if($.isArray(unspents) && blockstrap_functions.array_length(unspents) > 0)
+                        {
+                            var total = 0;
+                            var inputs = [];
+                            var amount_to_send = parseFloat(amount) * 100000000;
+                            var fee = $.fn.blockstrap.settings.blockchains[chain].fee * 100000000;
+
+                            $.each(unspents, function(k, unspent)
+                            {
+                                if(total < amount_to_send + fee)
+                                {
+                                    inputs.push({
+                                        txid: unspent.txid,
+                                        n: unspent.index,
+                                        script: unspent.script,
+                                        value: unspent.value,
+                                    });
+                                    total = total + unspent.value;
+                                }
+                            });
+                            
+                            if(total >= amount_to_send + fee)
+                            {
+
+                                var outputs = [{
+                                    address: address,
+                                    value: amount_to_send
+                                }];
+
+                                var raw_tx = $.fn.blockstrap.blockchains.raw(
+                                    multisig_address,
+                                    keys,
+                                    inputs,
+                                    outputs,
+                                    fee,
+                                    amount_to_send,
+                                    false,
+                                    true,
+                                    script
+                                );
+                                
+                                $.fn.blockstrap.api.relay(raw_tx, chain, function(results)
+                                {
+                                    if(typeof results.txid != 'undefined' && results.txid)
+                                    {
+                                        title = 'Success';
+                                        contents = '<p>Transaction successfully sent to <a href="http://api.blockstrap.com/v0/'+chain+'/address/id/'+address+'" target="_blank">'+address+'</p>';
+                                        contents+= '<p>TXID: <a href="http://api.blockstrap.com/v0/'+chain+'/transaction/id/'+results.txid+'" target="_blank">'+results.txid+'</a></p>';
+                                        bs.core.modal(title, contents);
+                                    }
+                                    else
+                                    {
+                                        contents = '<p>Unable to relay transaction</p>';
+                                        bs.core.modal(title, contents);
+                                    }
+                                });
+                            }
+                            else
+                            {
+                                contents = '<p>The available balance is not enough to make the transaction</p>';
+                                bs.core.modal(title, contents);
+                            }
+                        }
+                        else
+                        {
+                            contents = '<p>No available unspents for spending</p>';
+                            bs.core.modal(title, contents);
+                        }
+                    });
+                }
+                catch(error)
+                {
+                    contents = '<p>Invalid private keys</p>';
+                    bs.core.modal(title, contents);
+                }
+            }
+            else
+            {
+                contents = '<p>Address to send to and amount to send are required</p>';
+                bs.core.modal(title, contents);
+            }
+        }
+        else
+        {
+            bs.core.modal(title, contents);
+        }
+    },
     test: function()
     {
         var chain = 'doget';
@@ -219,57 +341,6 @@ var multi =
         console.log('generated address = '+key.address);
         var deterministic_keys = keys;
         var address_to_send_tx_too = 'ncq5H5EdCwmGVtQtquk2TKyXDTNApoDpwq';
-        $.fn.blockstrap.api.unspents(key.address, chain, function(unspents)
-        {
-            if($.isArray(unspents) && blockstrap_functions.array_length(unspents) > 0)
-            {
-                var total = 0;
-                var inputs = [];
-                var fee = $.fn.blockstrap.settings.blockchains[chain].fee * 100000000;
-
-                $.each(unspents, function(k, unspent)
-                {
-                    inputs.push({
-                        txid: unspent.txid,
-                        n: unspent.index,
-                        script: unspent.script,
-                        value: unspent.value,
-                    });
-                    total = total + unspent.value
-                });
-
-                var outputs = [{
-                    address: address_to_send_tx_too,
-                    value: total - fee
-                }];
-                
-                var private_keys = [];
-                var random_deterministic_keys = [];
-                random_deterministic_keys.push(deterministic_keys[0]);
-                random_deterministic_keys.push(deterministic_keys[2]);
-                $.each(random_deterministic_keys, function(k, obj)
-                {
-                    private_keys.push(obj.priv);
-                });
-
-                var raw_tx = $.fn.blockstrap.blockchains.raw(
-                    key.address,
-                    private_keys,
-                    inputs,
-                    outputs,
-                    fee,
-                    total - fee,
-                    false,
-                    true,
-                    key.script
-                );
-                
-                $.fn.blockstrap.api.relay(raw_tx, chain, function(results)
-                {
-                    console.log('results', results);
-                });
-            }
-        });
     },
     verify: function(form)
     {
