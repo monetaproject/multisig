@@ -332,10 +332,10 @@ var multi =
             bs.core.modal(title, contents);
         }
     },
-    test: function()
+    test: function(hash, chain)
     {
-        var chain = 'doget';
-        var hash = 'BS_MULTI_TEST';
+        if(typeof chain == 'undefined' || !chain) chain = 'doget';
+        if(typeof hash == 'undefined' || !hash) hash = 'BS_MULTI_TEST';
         var keys = $.fn.blockstrap.multisig.generate(hash, chain);
         var key = keys.pop();
         console.log('generated address = '+key.address);
