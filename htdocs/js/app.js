@@ -133,6 +133,15 @@ var multi =
             multi.decode(this, button);
         });
         
+        // Verify addresses or public keys are part of the reedem script
+        $('body').on('submit', '#bs-verify-multisig-script', function(e)
+        {
+            e.preventDefault();
+            var button = $(this).find('button[type="submit"]');
+            $(button).addClass('loading');
+            multi.verify(this, button);
+        });
+        
         // Used switch
         $('body').on('change', 'select[name="used"]', function(e)
         {
@@ -153,6 +162,17 @@ var multi =
                 }
                 $(list).html(contents);
             }
+        });
+        
+        // Add new keys to form
+        $('body').on('click', '#bs-add-another-key', function(e)
+        {
+            e.preventDefault();
+            var button = this;
+            var list = $('#'+$(button).attr('data-id'));
+            var count = $(list).find('input').length;
+            var input = '<input type="text" class="form-control" autocomplete="off" name="keys['+count+']" placeholder="Check this key or address is included" />';
+            $(list).append(input);
         });
     },
     init: function()
@@ -228,6 +248,66 @@ var multi =
                 });
             }
         });
+    },
+    verify: function(form)
+    {
+        var bs = $.fn.blockstrap;
+        var title = 'Error';
+        var contents = 'This is not a valid reedem script';
+        var script = $(form).find('textarea[name="script"]').val();
+        var chain = $(form).find('select[name="chain"]').val();
+        var lib = bs.settings.blockchains[chain].lib;
+        var blockchain_obj = bitcoin.networks[lib];
+        var keys = [];
+        try
+        {
+            var input_keys = [];
+            var keys = $.fn.blockstrap.multisig.decode(script, chain);
+            $('#bs-verify-keys').find('input').each(function(i, obj)
+            {
+                var key = $(this).val();
+                if(key)
+                {
+                    input_keys.push(key);
+                    title = 'Script Verification';
+                    contents = '<p>Results of verification below:</p>';
+                }
+            });
+            if(!script)
+            {
+                contents = '<p>No reedem script provided</p>';
+                bs.core.modal(title, contents);
+            }
+            else if(blockstrap_functions.array_length(input_keys) < 1)
+            {
+                contents = '<p>No addresses or keys to verify</p>';
+                bs.core.modal(title, contents);
+            }
+            else
+            {
+                $.each(input_keys, function(k, key)
+                {
+                    var this_contents = false;
+                    $.each(keys, function(i, this_key)
+                    {
+                        if(this_key.address == key || key == this_key.key)
+                        {
+                            contents+= '<p><span class="alert alert-success alert-block">'+key+' is included in the script</script></p>';
+                            this_contents = true;
+                        }
+                    });
+                    if(!this_contents)
+                    {
+                        contents+= '<p><span class="alert alert-danger alert-block">'+key+' is not included</span></p>';
+                    }
+                });
+                bs.core.modal(title, contents);
+            }
+        }
+        catch(error)
+        {
+            bs.core.modal(title, contents);
+        }
     }
 };
 
