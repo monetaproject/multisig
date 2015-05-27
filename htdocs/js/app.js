@@ -345,6 +345,7 @@ var multi =
         if(typeof chain == 'undefined' || !chain) chain = 'doget';
         if(typeof hash == 'undefined' || !hash) hash = 'BS_MULTI_TEST';
         var keys = $.fn.blockstrap.multisig.generate(hash, chain);
+        console.log('keys', keys);
         var key = keys.pop();
         console.log('generated address = '+key.address);
         var deterministic_keys = keys;

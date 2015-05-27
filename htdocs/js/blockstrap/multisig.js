@@ -86,7 +86,6 @@
                 script: redeem_script.toHex(),
                 address: address
             });
-            console.log('key_pairs', key_pairs);
             return key_pairs;
         }
         else

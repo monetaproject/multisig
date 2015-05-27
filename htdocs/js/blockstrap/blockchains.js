@@ -104,7 +104,7 @@
         }
     }
     
-    blockchains.keys = function(secret, blockchain, number_of_keys)
+    blockchains.keys = function(secret, blockchain, number_of_keys, indexes)
     {
         var keys = {};
         var is_array = false;
@@ -126,7 +126,6 @@
                     var raw_keys = bitcoin.HDNode.fromSeedBuffer(hash, blockchain_obj);
                     keys.push({
                         pub: raw_keys.pubKey.getAddress(blockchain_obj).toString(),
-                        key: raw_keys.pubKey,
                         hex: raw_keys.pubKey.toHex(),
                         priv: raw_keys.privKey.toWIF(blockchain_obj)
                     });
@@ -138,6 +137,13 @@
             {
                 var hash = bitcoin.crypto.sha256(secrets);
                 var raw_keys = bitcoin.HDNode.fromSeedBuffer(hash, blockchain_obj);
+                if(typeof indexes != 'undefined' && $.isArray(indexes))
+                {
+                    $.each(indexes, function(k, index)
+                    {
+                        raw_keys = raw_keys.derive(index);
+                    });
+                }
                 keys.pub = raw_keys.pubKey.getAddress(blockchain_obj).toString();
                 keys.priv = raw_keys.privKey.toWIF(blockchain_obj);
                 return keys;

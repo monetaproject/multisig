@@ -56,7 +56,7 @@
     },
     "copy": {
         "close": "Close",
-        "credits": "This Example Application is Powered by <a href='http://blockstrap.com'>Blockstrap</a> | View <a href='https://github.com/blockstrap/multi'>Source Code</a>",
+        "credits": "This Example Application is Powered by <a href='http://blockstrap.com'>Blockstrap</a> | View <a href='https://github.com/blockstrap/multisig'>Source Code</a>",
         "footer": {
             "left": "our network",
             "middle": "we're social",
